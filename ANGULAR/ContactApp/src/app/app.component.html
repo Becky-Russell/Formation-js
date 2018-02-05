@@ -1,0 +1,30 @@
+<div class="container">
+  <header>
+    <nav class="navbar narbar-inverse">
+      <div class="navbar-header"><a href="/" class="navbar-brand">
+        {{ title}}
+      </a></div>
+    </nav>
+  </header>
+  <div class="row">
+    <div class="col-sm-4">
+      <div>
+        <ul class="list-group">
+          <li *ngFor="let contact of mesContacts"
+            class="list-group-item">
+              {{ contact.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="jumbotron">
+        <h2> {{ unContact.name}}</h2>
+        <small>{{ unContact.username}}</small>
+      </div>
+    </div>
+  </div>
+  <footer class="text-center">
+    Copyright &copy 2018;
+  </footer>
+</div>
