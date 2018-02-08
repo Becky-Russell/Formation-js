@@ -3,8 +3,10 @@
  * notre application, on importe "Component"
  * via @angular/core
  */
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Contact } from './shared/models/contact';
+import {UserApiService} from './shared/services/user-api.service';
+import {UserStorageService} from './shared/services/user-storage.service';
 
 /**
  * @Component est ce qu'on appelle un décorateur.
@@ -39,7 +41,10 @@ import { Contact } from './shared/models/contact';
  * son comportement. Dans le contexte MV VM, notre classe
  * correspond au ViewModel.
  */
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(private userApiService: UserApiService,
+              private userStorageService: UserStorageService) {}
 
   // -- Déclaration d'une Variable Titre
   title: string = 'Gestion de mes Contacts';
@@ -55,7 +60,8 @@ export class AppComponent {
     email     : 'wf3@hl-media.fr'
   };
 
-  mesContacts: Contact[] = [
+  mesContacts: Contact[] = [];
+/*  mesContacts: Contact[] = [
     {
       id        : 1,
       name      : 'Hugo LIEGEARD',
@@ -74,7 +80,22 @@ export class AppComponent {
       username  : 'jonathanchemla',
       email     : 'j.chemla@hl-media.fr'
     }
-  ];
+  ];*/
+
+  ngOnInit(): void {
+    /*this.userApiService.getContacts().subscribe(
+      contacts => {
+        // console.log(contacts);
+        this.mesContacts = contacts;
+      }
+    );*/
+    // this.userStorageService.getContacts().subscribe(
+    //   contacts => {
+    //     this.mesContacts = contacts;
+    //   }
+    // );
+    this.mesContacts = this.userStorageService.getContacts();
+  }
 
   /**
    * Ma fonction choisir contact, prend un contact
@@ -84,6 +105,18 @@ export class AppComponent {
   choisirContact(contactCliqueParMonUtilisateur) {
     this.contactActif = contactCliqueParMonUtilisateur;
     console.log(this.contactActif);
+  }
+
+  ajouterContactDansListe(event) {
+    const leContact: Contact = event.leContact;
+    let id: number = this.mesContacts.length;
+    leContact.id = id += 1;
+    this.mesContacts.push(leContact);
+    this.userStorageService.save(this.mesContacts);
+  }
+
+  saveContact() {
+    this.userStorageService.save(this.mesContacts);
   }
 
 }
