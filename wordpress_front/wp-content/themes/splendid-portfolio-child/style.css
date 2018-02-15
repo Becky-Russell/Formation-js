@@ -1,0 +1,23 @@
+/*
+Theme Name: Splendid Portfolio Child
+Author: Rebecca Russell
+Author URI: https://www.facebook.com/
+Description: A simple theme child to create my portfolio.
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: blog, custom-background, custom-header, custom-menu, featured-images, left-sidebar, portfolio, one-column, right-sidebar, threaded-comments, translation-ready, two-columns
+Version: 0.1.5
+Text Domain: splendid-portfolio
+Template: splendid-portfolio
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.continue-reading {
+    border-radius: 4px;
+}
